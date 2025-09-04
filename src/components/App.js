@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const API_KEY = "8c17e587577b053e3f6d429a827f5e8d";
+const API_KEY = "3ff9adfaab2a8b37a6cf83193cb3dec5";
 
-function WeatherApp() {
+function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
@@ -12,9 +12,9 @@ function WeatherApp() {
 
   setError("");
 
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`
-  )
+ fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`
+    )
     .then((res) => {
       if (!res.ok) {
         throw new Error("City not found");
@@ -65,4 +65,4 @@ function WeatherApp() {
   );
 }
 
-export default WeatherApp;
+export default App;
