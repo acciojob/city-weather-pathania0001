@@ -23,6 +23,7 @@ function App() {
     })
     .then((data) => {
       setWeather(data);
+      setQuery("")
     })
     .catch((err) => {
       setWeather(null);
