@@ -7,12 +7,13 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
 
-  const fetchWeather = () => {
+  const fetchWeather = (e) => {
+    e.preventDefault(); // prevent form refresh
     if (!query) return;
 
     setError("");
-    const currentQuery = query; 
-    setQuery(""); 
+    const currentQuery = query;
+    setQuery("");
 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${currentQuery}&appid=${API_KEY}&units=metric`
@@ -34,18 +35,17 @@ function App() {
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
-      <h1>🌤 City Weather App</h1>
-
-      <input
-        type="text"
-        className="search"
-        placeholder="Enter a city"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ padding: "8px", width: "200px", marginRight: "10px" }}
-        required
-      />
-      <button onClick={fetchWeather}>Search</button>
+      <form onSubmit={fetchWeather}>
+        <input
+          type="text"
+          className="search"
+          placeholder="Enter a city"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ padding: "8px", width: "200px", marginRight: "10px" }}
+          required
+        />
+      </form>
 
       {(error || weather) && (
         <div className="weather" style={{ marginTop: "20px" }}>
