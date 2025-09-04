@@ -11,8 +11,8 @@ function App() {
     if (!query) return;
 
     setError("");
-    const currentQuery = query; // store input value
-    setQuery(""); // clear input immediately for Cypress test
+    const currentQuery = query; 
+    setQuery(""); 
 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${currentQuery}&appid=${API_KEY}&units=metric`
@@ -39,7 +39,7 @@ function App() {
       <input
         type="text"
         className="search"
-        placeholder="Enter city name"
+        placeholder="Enter a city"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         style={{ padding: "8px", width: "200px", marginRight: "10px" }}
