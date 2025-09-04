@@ -7,20 +7,29 @@ function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
 
-  const fetchWeather = async () => {
-    if (!query) return;
-    try {
-      setError("");
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`
-      );
-      const data = await res.json();
+ const fetchWeather = () => {
+  if (!query) return;
+
+  setError("");
+
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("City not found");
+      }
+      return res.json();
+    })
+    .then((data) => {
       setWeather(data);
-    } catch (err) {
+    })
+    .catch((err) => {
       setWeather(null);
       setError(err.message);
-    }
-  };
+    });
+};
+
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
