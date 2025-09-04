@@ -43,6 +43,7 @@ function App() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         style={{ padding: "8px", width: "200px", marginRight: "10px" }}
+        required
       />
       <button onClick={fetchWeather}>Search</button>
 
